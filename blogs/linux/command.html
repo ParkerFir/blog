@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>linux常用操作命令 | 知青Fir</title>
+    <meta name="generator" content="VuePress 1.8.0">
+    <link rel="icon" href="/ico.ico">
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/mouse.min.js"></script>
+    <meta name="description" content="黎明就在眼前。">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/assets/css/0.styles.cbed99ef.css" as="style"><link rel="preload" href="/assets/js/app.d8429c71.js" as="script"><link rel="preload" href="/assets/js/4.b009a9a0.js" as="script"><link rel="preload" href="/assets/js/19.b7e624df.js" as="script"><link rel="prefetch" href="/assets/js/1.43dc4591.js"><link rel="prefetch" href="/assets/js/10.066622df.js"><link rel="prefetch" href="/assets/js/11.ce4e092e.js"><link rel="prefetch" href="/assets/js/12.7bca3126.js"><link rel="prefetch" href="/assets/js/13.7da41763.js"><link rel="prefetch" href="/assets/js/14.8de9f757.js"><link rel="prefetch" href="/assets/js/15.0e007552.js"><link rel="prefetch" href="/assets/js/16.20987007.js"><link rel="prefetch" href="/assets/js/17.11c38889.js"><link rel="prefetch" href="/assets/js/18.4898c0a9.js"><link rel="prefetch" href="/assets/js/2.5b871c30.js"><link rel="prefetch" href="/assets/js/20.e2b0a875.js"><link rel="prefetch" href="/assets/js/21.4ef5d51c.js"><link rel="prefetch" href="/assets/js/22.478ee821.js"><link rel="prefetch" href="/assets/js/23.d9de0efb.js"><link rel="prefetch" href="/assets/js/24.6c9afaf8.js"><link rel="prefetch" href="/assets/js/5.02035df4.js"><link rel="prefetch" href="/assets/js/6.8ea5bc82.js"><link rel="prefetch" href="/assets/js/7.14b64655.js"><link rel="prefetch" href="/assets/js/8.595fbe6a.js"><link rel="prefetch" href="/assets/js/9.c648c761.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.cbed99ef.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><Common sidebarItems=""><main class="page"><section style="display:none;"><div class="page-title"><h1 class="title">linux常用操作命令</h1> <div data-v-cf73456e><i class="iconfont reco-account" data-v-cf73456e><span data-v-cf73456e>知青Fir</span></i> <i class="iconfont reco-date" data-v-cf73456e><span data-v-cf73456e>2021/3/24</span></i> <i class="iconfont reco-eye" data-v-cf73456e><span id="/blogs/linux/command.html" data-flag-title="Your Article Title" class="leancloud-visitors" data-v-cf73456e><a class="leancloud-visitors-count" style="font-size:.9rem;font-weight:normal;color:#999;"></a></span></i> <i class="tags iconfont reco-tag" data-v-cf73456e><span class="tag-item" data-v-cf73456e>linux常用操作</span></i></div></div> <div class="theme-reco-content content__default"><h2 id="命令相关"><a href="#命令相关" class="header-anchor">#</a> 命令相关</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>php-fpm重启：killall php-fpm <span class="token operator">&amp;&amp;</span> /usr/local/php/sbin/php-fpm
+
+指定php版本运行命令行命令：/usr/local/php71/bin/php artisan cache:clear
+
+查看端口: <span class="token function">netstat</span> -ltunp
+
+添加用户：/usr/sbin/useradd fir -s /bin/bash -u <span class="token number">2020</span> -m
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h2 id="redis相关"><a href="#redis相关" class="header-anchor">#</a> redis相关</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>添加扩展
+
+<span class="token comment"># 安装</span>
+<span class="token function">wget</span> http://download.redis.io/releases/redis-5.0.5.tar.gz
+<span class="token comment"># 解压</span>
+<span class="token function">tar</span> xzf redis-5.0.7.tar.gz
+<span class="token comment"># 进入目录</span>
+<span class="token builtin class-name">cd</span> redis-5.0.7
+<span class="token comment"># 安装redis</span>
+<span class="token function">make</span>
+
+<span class="token comment"># 安装完成后mkdir文件：</span>
+<span class="token function">mkdir</span> /usr/local/redis
+<span class="token function">mkdir</span> /usr/local/redis/conf
+<span class="token comment"># 将 https://gitee.com/Type-Moon/TypeMoon/blob/master/php_acg/redis/conf/redis.conf 文件写入</span>
+<span class="token function">vim</span> conf/redis.conf
+<span class="token comment"># redis持久化</span>
+<span class="token function">mkdir</span> /usr/local/redis/rdb_aof
+
+<span class="token comment"># 启动redis服务；</span>
+/usr/local/redis/bin/redis-server /usr/local/redis/conf/redis.conf
+<span class="token comment"># 进入redis命令行：</span>
+/usr/local/redis/bin/redis-cli -p <span class="token number">6379</span>
+
+<span class="token comment"># 查看端口：</span>
+<span class="token function">netstat</span> -tnlp
+
+windows redis
+
+<span class="token comment"># windows服务的方式</span>
+redis-server --service-install redis.windows-service.conf --loglevel verbose 
+
+<span class="token comment"># 如果不在服务中去启动，也可以cmd执行如下命令启动</span>
+redis-server.exe --service-start --service-name redis
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br></div></div><h2 id="防火墙命令"><a href="#防火墙命令" class="header-anchor">#</a> 防火墙命令</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 安装防火墙</span>
+yum <span class="token function">install</span> firewalld firewall-config
+
+<span class="token comment"># 查看防火墙状态</span>
+systemctl status firewalld <span class="token operator">||</span> <span class="token function">service</span> iptables status <span class="token operator">||</span>  firewall-cmd --state
+
+<span class="token comment"># 添加防火墙端口</span>
+firewall-cmd --add-port<span class="token operator">=</span><span class="token number">8887</span>/tcp --permanent
+
+<span class="token comment"># 重启防火墙</span>
+systemctl restart firewalld <span class="token operator">||</span> <span class="token function">service</span> iptables restart <span class="token operator">||</span>  firewall-cmd --reload
+
+<span class="token comment"># 开启防火墙</span>
+systemctl start firewalld <span class="token operator">||</span> <span class="token function">service</span> iptables start  
+
+<span class="token comment"># 停止防火墙</span>
+systemctl stop firewalld <span class="token operator">||</span> <span class="token function">service</span> iptables stop 
+
+<span class="token comment"># 检测防火墙端口是否存在</span>
+firewall-cmd --zone<span class="token operator">=</span>public --query-port<span class="token operator">=</span><span class="token number">8887</span>/tcp
+
+<span class="token comment"># 查看防火墙全部列表</span>
+firewall-cmd --list-all
+
+<span class="token comment"># 永久关闭防火墙</span>
+<span class="token function">chkconfig</span> iptables off  
+
+永久关闭后重启
+<span class="token function">chkconfig</span> iptables on
+
+<span class="token comment"># 查看防火墙规则</span>
+firewall-cmd --list-all
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br></div></div><h2 id="端口命令"><a href="#端口命令" class="header-anchor">#</a> 端口命令</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token comment"># 开启80端口</span>
+<span class="token function">vim</span> /etc/sysconfig/iptables
+-A INPUT -m state --state NEW -m tcp -p tcp --dport <span class="token number">80</span> -j ACCEPT
+
+<span class="token comment"># 查询端口是否开放</span>
+firewall-cmd --query-port<span class="token operator">=</span><span class="token number">8080</span>/tcp
+
+<span class="token comment"># 开放端口后重启防火墙</span>
+<span class="token function">service</span> iptables restart
+
+<span class="token comment"># 移除端口 --permanent：表示设置为持久  --add-port：标识添加的端口</span>
+firewall-cmd --permanent --remove-port<span class="token operator">=</span><span class="token number">8080</span>/tcp 
+
+<span class="token comment"># 查看通过的端口</span>
+firewall-cmd --zone<span class="token operator">=</span>public --list-ports
+
+<span class="token comment"># 关闭指定端口</span>
+firewall-cmd --zone<span class="token operator">=</span>public --remove-port<span class="token operator">=</span><span class="token number">80</span>/tcp --permanent
+
+<span class="token comment"># 查询所有端口</span>
+<span class="token function">netstat</span> -ntlp （需要插件）
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br></div></div><h2 id="安装下载文件到本地"><a href="#安装下载文件到本地" class="header-anchor">#</a> 安装下载文件到本地</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>安装linux工具lrzsz：yum -y <span class="token function">install</span> lrzsz
+sz 要下载的文件
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h2 id="文件夹相关"><a href="#文件夹相关" class="header-anchor">#</a> 文件夹相关</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">ls</span>                        查看目录中的文件
+ll                        显示文件和目录的详细信息
+<span class="token function">du</span> -h * <span class="token operator">|</span> <span class="token function">sort</span> -n         将文件夹大小从小到大排序
+<span class="token function">mkdir</span> dir1 dir2           创建两个目录
+<span class="token function">chmod</span> <span class="token number">777</span> <span class="token function">file</span>            给文件赋予权限
+<span class="token function">cp</span> -r  <span class="token number">2</span>/*  <span class="token number">1</span>/            将目录为2的文件夹下所有内容 复制到目录为1的文件夹下
+<span class="token function">rmdir</span> <span class="token number">3</span>                   删除一个目录叫3的文件夹
+<span class="token function">rm</span> -f <span class="token number">1</span>/*                 删除目录为1下面的所有文件
+<span class="token function">rm</span> -rf <span class="token number">1</span>                  删除目录为1与1里面所有的文件
+移动 <span class="token number">1</span> 文件夹到schizophrnia_2_DTI_mriconvert文件夹下
+<span class="token function">mv</span> /root/user/1          /root/user/nia/p05-fu
+重命名也可以这样写，将 <span class="token number">1</span> 重命名为 <span class="token number">2</span>
+<span class="token function">mv</span> /root/user/1           /root/user/2
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><h2 id="文件相关"><a href="#文件相关" class="header-anchor">#</a> 文件相关</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">touch</span> <span class="token number">1</span>.php               创建一个名为1.php的文件
+<span class="token function">touch</span> -r <span class="token number">1</span>.php <span class="token number">2</span>.php      更新1.php的时间戳换成与2.php时间戳相同
+<span class="token function">touch</span> -t <span class="token number">201902151320</span> x   更新 x 的时间戳改为置顶时间戳     
+<span class="token function">less</span> <span class="token number">1</span>.php                浏览文件内容
+<span class="token function">rm</span> -f <span class="token number">1</span>.php               删除名为1.php文件
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h2 id="编辑文件"><a href="#编辑文件" class="header-anchor">#</a> 编辑文件</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">vim</span> <span class="token number">1</span>.php               打开或新建文件，并将光标置于第一行首
+<span class="token function">vim</span> +2 <span class="token number">1</span>.php            打开文件并将光标置于第2行首
+<span class="token function">vim</span> + <span class="token number">1</span>.php             打开文件并将光标置于最后一行
+<span class="token function">vim</span> -r <span class="token number">1</span>.php            在上次使用vim编辑时候发生系统崩溃,恢复1.php内容
+<span class="token function">vim</span> -o <span class="token number">1</span>.php <span class="token number">2</span>.php      小写o垂直分割窗口 大写O水平分割窗口
+<span class="token function">vim</span> +/is <span class="token number">1</span>.php          打开文件并将光标置于第一个与is匹配的行数
+
+U 撤销
+/ 内容搜索
+:set nu 添加行数
+n                       在命令模式中 n 为向下搜索当前 N为向上搜索当前 
+<span class="token builtin class-name">:</span> w                     保存
+<span class="token builtin class-name">:</span> q                     退出
+<span class="token builtin class-name">:</span> x                     保存并退出
+<span class="token builtin class-name">:</span> q <span class="token operator">!</span>                   不保存当前文件并退出
+a                       在当前光标位置的右边添加文本
+i                       在当前光标位置的左边添加文本
+A                       在当前行的末尾位置添加文本
+I                       在当前行的开始处添加文本<span class="token punctuation">(</span>非空字符的行首<span class="token punctuation">)</span>
+O                       在当前行的上面新建一行
+o                       在当前行的下面新建一行
+R                       替换<span class="token punctuation">(</span>覆盖<span class="token punctuation">)</span>当前光标位置及后面的若干文本
+J                       合并光标所在行及下一行为一行<span class="token punctuation">(</span>依然在命令模式<span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><h2 id="压缩文件相关"><a href="#压缩文件相关" class="header-anchor">#</a> 压缩文件相关</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">tar</span> <span class="token punctuation">[</span>主选项+辅选项<span class="token punctuation">]</span> 文件或者目录
+
+独立命令: <span class="token punctuation">(</span>主选项<span class="token punctuation">)</span>
+c                         建立压缩档案
+r                         像压缩归档文件末尾追加文件
+t                         查看内容
+u                         更新原压缩包中的文件
+x                         解压
+f                         必选参数 使用档案名字 <span class="token punctuation">(</span>最后参数<span class="token punctuation">)</span>
+<span class="token function">v</span>                         可选参数 报告文件详细信息
+w                         确认步骤
+
+<span class="token function">tar</span> -cf xx.tar */*.jpg    将 文件夹名为*或所有的.jpg文件 打成一个名为xx.tar的包
+<span class="token function">tar</span> -rf xx.tar *          将 文件夹名为*的追加到xx.tar里面去
+<span class="token function">tar</span> -uf xx.tar *          将 原来xx.tar包中文件夹名为*的重新更新到xx.tar里面去
+<span class="token function">tar</span> -tf xx.tar            查看xx.tar中的所有文件
+<span class="token function">tar</span> -xf xx.tar            解压xx.tar中的所有文件
+<span class="token function">zip</span> -r mydata.zip mydata  将mydata 压缩为mydata.zip
+<span class="token function">unzip</span> -o -d /home/wwwroot/port.youthup.cn <span class="token number">123</span>.zip
+<span class="token function">mkdir</span> runtime
+<span class="token function">chmod</span> <span class="token number">777</span> <span class="token function">file</span> 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br></div></div><h2 id="定时任务"><a href="#定时任务" class="header-anchor">#</a> 定时任务</h2> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">tail</span> -f /var/log/cron     查看crontab状态
+<span class="token function">service</span> crond status      查看crontab服务器运行状态
+<span class="token function">service</span> crond stop        关闭crontab
+<span class="token function">ls</span> -l /usr/bin/crondtab   查看用户定时任务的权限
+<span class="token function">crontab</span> -e                编辑定时任务
+<span class="token function">crontab</span> -l                查看定时任务 相当于 /var/spool/cron/用户中的crontab list
+<span class="token function">crontab</span> -r                删除定时任务
+
+* * * * * /root/test/date.sh <span class="token operator">&gt;&gt;</span> /root/test/log.log <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div></div></section> <!----> <!----> <!----> <!----></main> <!----></Common><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div><div></div><canvas id="vuepress-canvas-cursor"></canvas><div id="live2d-widget" class="live2d-widget-container" style="position:fixed;right:65px;bottom:0px;width:135px;height:300px;z-index:99999;opacity:0.9;pointer-events:none;"><canvas id="live2d_canvas" width="135" height="300" class="live2d_canvas" style="position:absolute;left:0px;top:0px;width:135px;height:300px;"></canvas></div><APlayer audio="" fixed="true" mini="true" autoplay="autoplay" theme="#F2F2F2" loop="loop" order="random" preload="auto" volume="1" mutex="true" lrc-type="3" list-folded="true" list-max-height="250" storage-name="vuepress-plugin-meting" id="aplayer-fixed"></APlayer><div><div class="sponsor-container" data-v-a142c76a><div class="sponsor-love position-absolute transition-3ms" data-v-a142c76a>
+    Sponsor
+  </div> <a href="https://github.com/yokefellow/vuepress-plugin-sponsor" target="_blank" title="Github" class="sponsor-github position-absolute transition-3ms" data-v-a142c76a></a> <ul class="sponsor-payment-options transition-3ms" data-v-a142c76a><li id="alipay-option" class="transition-3ms" data-v-a142c76a></li> <li id="wechat-option" class="transition-3ms" data-v-a142c76a></li> <li id="qq-option" class="transition-3ms" data-v-a142c76a></li> <li id="paypal-option" class="transition-3ms" data-v-a142c76a></li></ul> <div class="sponsor-qrcode-container position-absolute" style="display:none;" data-v-a142c76a data-v-a142c76a><div class="sponsor-qrcode-info" style="background-image:url();pointer-events:none;display:none;" data-v-a142c76a data-v-a142c76a></div></div> <div class="sponsor-message position-absolute" style="display:none;" data-v-a142c76a data-v-a142c76a>
+      主人忘记设置啦
+    </div></div></div></div></div>
+    <script src="/assets/js/app.d8429c71.js" defer></script><script src="/assets/js/4.b009a9a0.js" defer></script><script src="/assets/js/19.b7e624df.js" defer></script>
+  </body>
+</html>

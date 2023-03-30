@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>手动编译PHP各版本环境（含报错信息解决） | 知青Fir</title>
+    <meta name="generator" content="VuePress 1.8.0">
+    <link rel="icon" href="/ico.ico">
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/mouse.min.js"></script>
+    <meta name="description" content="黎明就在眼前。">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/assets/css/0.styles.cbed99ef.css" as="style"><link rel="preload" href="/assets/js/app.d8429c71.js" as="script"><link rel="preload" href="/assets/js/4.b009a9a0.js" as="script"><link rel="preload" href="/assets/js/13.7da41763.js" as="script"><link rel="prefetch" href="/assets/js/1.43dc4591.js"><link rel="prefetch" href="/assets/js/10.066622df.js"><link rel="prefetch" href="/assets/js/11.ce4e092e.js"><link rel="prefetch" href="/assets/js/12.7bca3126.js"><link rel="prefetch" href="/assets/js/14.8de9f757.js"><link rel="prefetch" href="/assets/js/15.0e007552.js"><link rel="prefetch" href="/assets/js/16.20987007.js"><link rel="prefetch" href="/assets/js/17.11c38889.js"><link rel="prefetch" href="/assets/js/18.4898c0a9.js"><link rel="prefetch" href="/assets/js/19.b7e624df.js"><link rel="prefetch" href="/assets/js/2.5b871c30.js"><link rel="prefetch" href="/assets/js/20.e2b0a875.js"><link rel="prefetch" href="/assets/js/21.4ef5d51c.js"><link rel="prefetch" href="/assets/js/22.478ee821.js"><link rel="prefetch" href="/assets/js/23.d9de0efb.js"><link rel="prefetch" href="/assets/js/24.6c9afaf8.js"><link rel="prefetch" href="/assets/js/5.02035df4.js"><link rel="prefetch" href="/assets/js/6.8ea5bc82.js"><link rel="prefetch" href="/assets/js/7.14b64655.js"><link rel="prefetch" href="/assets/js/8.595fbe6a.js"><link rel="prefetch" href="/assets/js/9.c648c761.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.cbed99ef.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><Common sidebarItems=""><main class="page" style="padding-right:0;"><section style="display:none;"><div class="page-title"><h1 class="title">手动编译PHP各版本环境（含报错信息解决）</h1> <div data-v-cf73456e><i class="iconfont reco-account" data-v-cf73456e><span data-v-cf73456e>知青Fir</span></i> <i class="iconfont reco-date" data-v-cf73456e><span data-v-cf73456e>2019/5/20</span></i> <i class="iconfont reco-eye" data-v-cf73456e><span id="/blogs/linux/phpmake.html" data-flag-title="Your Article Title" class="leancloud-visitors" data-v-cf73456e><a class="leancloud-visitors-count" style="font-size:.9rem;font-weight:normal;color:#999;"></a></span></i> <i class="tags iconfont reco-tag" data-v-cf73456e><span class="tag-item" data-v-cf73456e>linux常用操作</span></i></div></div> <div class="theme-reco-content content__default"><h1 id="安装php各版本"><a href="#安装php各版本" class="header-anchor">#</a> 安装PHP各版本</h1> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>拷贝包：
+<span class="token comment"># wget http://cn2.php.net/get/php-5.4.44.tar.gz/from/this/mirror</span>
+<span class="token comment"># wget http://cn2.php.net/distributions/php-7.1.1.tar.gz</span>
+<span class="token comment"># wget http://cn2.php.net/distributions/php-7.2.0.tar.gz</span>
+<span class="token comment"># wget http://www.php.net/distributions/php-7.3.21.tar.gz</span>
+进行解压：
+<span class="token comment"># tar xf php-7.1.1.tar.gz</span>
+
+进入文件夹：
+<span class="token comment"># cd php-7.1.1</span>
+
+PHP <span class="token number">7.1</span> 环境配置：
+<span class="token comment"># ./configure  --prefix=/usr/local/php71  --with-config-file-path=/usr/local/php71/etc    --enable-fpm  --with-fpm-user=www  --with-fpm-group=www   --with-mysqli=mysqlnd  --with-pdo-mysql=mysqlnd  --with-iconv-dir  --with-freetype-dir  --with-jpeg-dir  --with-png-dir  --with-zlib  --with-libxml-dir=/usr/local/libxml2  --enable-xml  --disable-rpath  --enable-bcmath  --enable-shmop  --enable-sysvsem  --enable-inline-optimization  --with-curl  --enable-mbregex  --enable-mbstring  --with-mcrypt  --enable-ftp  --with-gd  --enable-gd-native-ttf  --with-openssl  --with-mhash  --enable-pcntl  --enable-sockets  --with-xmlrpc  --enable-zip  --enable-soap  --with-gettext  --disable-fileinfo  --enable-opcache  --enable-intl  --with-xsl -with-config-file-scan-dir=/usr/local/php71/conf.d</span>
+
+PHP <span class="token number">7.3</span> 环境配置：
+<span class="token comment"># ./configure --prefix=/usr/local/php73  --with-config-file-path=/usr/local/php73/etc  --with-fpm-user=www  --with-fpm-group=www  --with-mysqli=mysqlnd  --with-pdo-mysql=mysqlnd  --with-iconv-dir  --with-freetype-dir  --with-jpeg-dir  --with-png-dir  --with-zlib  --with-libxml-dir  --with-ldap=shared  --with-gdbm  --with-pear  --with-gettext  --with-curl  --with-xmlrpc  --with-openssl  --with-mhash  --with-gd  --enable-fpm  --enable-mysqlnd  --enable-mysqlnd-compression-support  --enable-xml  --enable-rpath  --enable-bcmath  --enable-shmop  --enable-sysvsem  --enable-inline-optimization  --enable-mbregex  --enable-mbstring  --enable-intl  --enable-ftp  --enable-gd-jis-conv  --enable-pcntl  --enable-sockets  --enable-zip  --enable-soap  --enable-fileinfo  --enable-opcache  --enable-maintainer-zts</span>
+
+PHP <span class="token number">5.4</span> 环境配置：
+<span class="token comment"># ./configure --prefix=/usr/local/php5.4.6  --with-mysql=/usr/local/mysql  --with-xmlrpc --with-openssl --with-zlib --with-freetype-dir=/usr/local/freetype --with-gd=/usr/local/gd --with-jpeg-dir=/usr/local/jpeg --with-png-dir=/usr/local/libpng --with-iconv=/usr/local/libiconv-1.14 --enable-short-tags --enable-sockets --enable-zend-multibyte --enable-soap --enable-mbstring --enable-static --enable-gd-native-ttf --with-curl --with-xsl --enable-ftp --with-libxml-dir=/usr/local/libxml2 --enable-gd-native-ttf --enable-zip --enable-fastcgi --enable-fpm</span>
+
+报错:
+configure: error: DBA: Could not <span class="token function">find</span> necessary header file<span class="token punctuation">(</span>s<span class="token punctuation">)</span>.
+解决:
+<span class="token comment"># yum install gdbm-devel</span>
+报错:
+configure: error: Cannot <span class="token function">find</span> ldap.h
+解决:
+<span class="token comment"># yum install openldap openldap-devel -yes</span>
+
+报错:
+configure: error: Cannot <span class="token function">find</span> ldap libraries <span class="token keyword">in</span> /usr/lib.
+解决:
+<span class="token comment"># cp -frp /usr/lib64/libldap* /usr/lib/</span>
+
+报错:
+configure: error: Cannot <span class="token function">find</span> ldap.h
+解决:
+<span class="token comment"># yum install openldap openldap-devel -yes</span>
+
+
+报错: 内存不足
+cc: internal compiler error: Killed <span class="token punctuation">(</span>program cc1<span class="token punctuation">)</span>
+Please submit a full bug report,
+with preprocessed <span class="token builtin class-name">source</span> <span class="token keyword">if</span> appropriate.
+See <span class="token operator">&lt;</span>http://bugzilla.redhat.com/bugzilla<span class="token operator">&gt;</span> <span class="token keyword">for</span> instructions.
+make: *** <span class="token punctuation">[</span>ext/date/lib/parse_date.lo<span class="token punctuation">]</span> Error <span class="token number">1</span>
+
+解决:
+<span class="token comment"># free -m  // 查看Swap物理内存分区</span>
+<span class="token comment"># sudo dd if=/dev/zero of=/swapfile bs=64M count=16 // 临时使用交换分区来解决</span>
+     <span class="token number">16</span>+0 records <span class="token keyword">in</span>
+     <span class="token number">16</span>+0 records out
+     <span class="token number">1073741824</span> bytes <span class="token punctuation">(</span><span class="token number">1.1</span> GB<span class="token punctuation">)</span> copied, <span class="token number">9.3047</span> s, <span class="token number">115</span> MB/s
+<span class="token comment"># sudo mkswap /swapfile</span>
+     Setting up swapspace version <span class="token number">1</span>, size <span class="token operator">=</span> <span class="token number">1048572</span> KiB
+     no label, <span class="token assign-left variable">UUID</span><span class="token operator">=</span>745c6c2f-efa3-498a-ad10-5d705890d5ef
+<span class="token comment"># sudo swapon /swapfile</span>
+     swapon: /swapfile: insecure permissions 0644, 0600 suggested.
+
+报错: 
+undefined reference to <span class="token string">'libiconv_open'</span>
+解决⑴
+<span class="token comment"># vim /usr/etc/php-7.1.1/Makefile  // Line 115 EXTRA_LIBS=&quot;...-lcrypt&quot; 最后加上 &quot;-liconv&quot;</span>
+<span class="token comment"># make clean // 清除 make 所有命令</span>
+<span class="token comment"># make 重新进行编译</span>
+解决⑵
+<span class="token comment"># ln -s /usr/local/lib/libiconv.so.2 /usr/lib64/</span>
+<span class="token comment"># make ZEND_EXTRA_LIBS='-liconv'</span>
+<span class="token comment"># make 重新进行编译</span>
+
+报错:
+collect2: ld returned <span class="token number">1</span> <span class="token builtin class-name">exit</span> status
+make: *** <span class="token punctuation">[</span>sapi/cli/php<span class="token punctuation">]</span> Error <span class="token number">1</span>
+解决:
+<span class="token comment"># make ZEND_EXTRA_LIBS='-liconv' </span>
+
+编译
+<span class="token comment"># make</span>
+     Generating phar.php
+     Generating phar.phar
+     PEAR package PHP_Archive not installed: generated phar will require PHP<span class="token string">'s phar extension be enabled.
+     directorygraphiterator.inc
+     directorytreeiterator.inc
+     invertedregexiterator.inc
+     clicommand.inc
+     pharcommand.inc
+     phar.inc
+     Build complete.
+     Don'</span>t forget to run <span class="token string">'make test'</span><span class="token builtin class-name">.</span>
+
+编译完成，可以取消交换分区：
+<span class="token comment"># sudo swapoff /swapfile</span>
+<span class="token comment"># sudo rm /swapfile</span>
+
+安装
+<span class="token comment"># make install</span>
+     You may want to add: /usr/local/php71/lib/php to your php.ini include_path
+     /usr/etc/php-7.1.1/build/shtool <span class="token function">install</span> -c ext/phar/phar.phar /usr/local/php71/bin
+     <span class="token function">ln</span> -s -f phar.phar /usr/local/php71/bin/phar
+     Installing PDO headers: /usr/local/php71/include/php/ext/pdo/
+
+成功后查看版本:
+<span class="token comment"># /usr/local/php71/bin/php -v</span>
+
+拷贝服务文件的php.ini配置文件到php71  拷贝php5.4的fpm文件到php7.1中
+<span class="token comment"># cp /usr/etc/php-7.1.1/php.ini-development /usr/local/php71/etc/php.ini</span>
+<span class="token comment"># cp /usr/local/php/etc/php-fpm.conf /usr/local/php71/etc/</span>
+
+
+配置第二个端口php-fpm服务（Line <span class="token number">7</span>：listen <span class="token operator">=</span> <span class="token number">127.0</span>.0.1:9071）
+<span class="token comment"># vim /usr/local/php71/etc/php-fpm.conf</span>
+
+
+
+重启fpm：
+<span class="token comment"># killall php-fpm &amp;&amp; /usr/local/php/sbin/php-fpm &amp;&amp; /usr/local/php71/sbin/php-fpm </span>
+<span class="token comment"># killall php-fpm &amp;&amp; /usr/local/php/sbin/php-fpm &amp;&amp; /usr/local/php71/sbin/php-fpm &amp;&amp; /usr/local/php73/sbin/php-fpm</span>
+
+查看当前php环境：
+<span class="token comment"># ps aux|grep php</span>
+
+配置数据库（Line1170：mysqli.default_socket <span class="token operator">=</span> /tmp/mysql.sock）
+<span class="token comment"># vim /usr/local/php71/etc/php.ini</span>
+
+配置nginx文件
+重启nginx服务器
+End！
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br></div></div></div></section> <!----> <!----> <!----> <!----></main> <!----></Common><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div><div></div><canvas id="vuepress-canvas-cursor"></canvas><div id="live2d-widget" class="live2d-widget-container" style="position:fixed;right:65px;bottom:0px;width:135px;height:300px;z-index:99999;opacity:0.9;pointer-events:none;"><canvas id="live2d_canvas" width="135" height="300" class="live2d_canvas" style="position:absolute;left:0px;top:0px;width:135px;height:300px;"></canvas></div><APlayer audio="" fixed="true" mini="true" autoplay="autoplay" theme="#F2F2F2" loop="loop" order="random" preload="auto" volume="1" mutex="true" lrc-type="3" list-folded="true" list-max-height="250" storage-name="vuepress-plugin-meting" id="aplayer-fixed"></APlayer><div><div class="sponsor-container" data-v-a142c76a><div class="sponsor-love position-absolute transition-3ms" data-v-a142c76a>
+    Sponsor
+  </div> <a href="https://github.com/yokefellow/vuepress-plugin-sponsor" target="_blank" title="Github" class="sponsor-github position-absolute transition-3ms" data-v-a142c76a></a> <ul class="sponsor-payment-options transition-3ms" data-v-a142c76a><li id="alipay-option" class="transition-3ms" data-v-a142c76a></li> <li id="wechat-option" class="transition-3ms" data-v-a142c76a></li> <li id="qq-option" class="transition-3ms" data-v-a142c76a></li> <li id="paypal-option" class="transition-3ms" data-v-a142c76a></li></ul> <div class="sponsor-qrcode-container position-absolute" style="display:none;" data-v-a142c76a data-v-a142c76a><div class="sponsor-qrcode-info" style="background-image:url();pointer-events:none;display:none;" data-v-a142c76a data-v-a142c76a></div></div> <div class="sponsor-message position-absolute" style="display:none;" data-v-a142c76a data-v-a142c76a>
+      主人忘记设置啦
+    </div></div></div></div></div>
+    <script src="/assets/js/app.d8429c71.js" defer></script><script src="/assets/js/4.b009a9a0.js" defer></script><script src="/assets/js/13.7da41763.js" defer></script>
+  </body>
+</html>
